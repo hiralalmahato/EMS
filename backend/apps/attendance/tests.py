@@ -1,12 +1,11 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 from rest_framework.test import APIClient
 from rest_framework import status
 from apps.departments.models import Department
 from apps.employees.models import Employee
 from apps.attendance.models import AttendanceRecord
-from datetime import date, datetime, timedelta
+from datetime import date
 from decimal import Decimal
 
 User = get_user_model()

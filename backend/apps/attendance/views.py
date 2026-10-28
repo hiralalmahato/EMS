@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from apps.accounts.permissions import IsAdminOrHR
 from apps.employees.models import Employee
 from .models import AttendanceRecord
-from .serializers import AttendanceRecordSerializer, CheckInSerializer, CheckOutSerializer
+from .serializers import AttendanceRecordSerializer
 
 
 class AttendanceViewSet(viewsets.ModelViewSet):

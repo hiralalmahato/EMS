@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status, permissions, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 import csv
 from django.http import HttpResponse
@@ -59,7 +60,6 @@ class PayrollViewSet(viewsets.ModelViewSet):
         record = self.get_object()
         if record.status != 'processed':
             return Response({'detail': 'Only processed records can be marked as paid.'}, status=status.HTTP_400_BAD_REQUEST)
-        from django.utils import timezone
         record.status = 'paid'
         record.payment_date = timezone.now().date()
         record.save()

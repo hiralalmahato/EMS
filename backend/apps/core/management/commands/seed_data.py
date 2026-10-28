@@ -692,7 +692,6 @@ class Command(BaseCommand):
     def _create_performance_goals(self):
         active_employees = list(Employee.objects.filter(status='active')[:12])
         admin_user = User.objects.filter(role='admin').first()
-        today = timezone.now().date()
 
         goals_data = [
             ('Improve API response time', 'Reduce average API response time to under 200ms for all critical endpoints.', 'Average response time < 200ms across all monitored endpoints', 'in_progress', 65),
@@ -708,7 +707,7 @@ class Command(BaseCommand):
         ]
 
         count = 0
-        for i, (title, desc, target, status, progress) in enumerate(goals_data):
+        for i, (title, desc, target, goal_status, progress) in enumerate(goals_data):
             emp = active_employees[i % len(active_employees)]
             _, created = PerformanceGoal.objects.get_or_create(
                 employee=emp,
@@ -718,7 +717,7 @@ class Command(BaseCommand):
                     'target': target,
                     'start_date': date(2026, 7, 1),
                     'end_date': date(2026, 12, 31),
-                    'status': status,
+                    'status': goal_status,
                     'progress': progress,
                     'created_by': admin_user,
                 }
