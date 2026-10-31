@@ -84,14 +84,14 @@ export default function PayrollPage() {
     <div className="space-y-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">Payroll</h1>
+          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">Payroll</h1>
           <p className="text-sm text-[hsl(var(--muted-foreground))]">
             {isAdmin ? 'Manage payroll records and processing' : 'Your payslips'}
           </p>
         </div>
         {isAdmin && (
           <button onClick={() => setShowForm(true)}
-            className="inline-flex h-8 items-center gap-1.5 rounded-md bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:bg-[hsl(var(--primary))]/90">
+            className="inline-flex h-8 items-center gap-1.5 rounded-md bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:opacity-90 transition-all duration-200 btn-press">
             <Plus className="h-3.5 w-3.5" /> Create Payroll
           </button>
         )}
@@ -160,8 +160,8 @@ export default function PayrollPage() {
 
       {/* Create Payroll Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-full max-w-md rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg mx-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 modal-backdrop">
+          <div className="w-full max-w-md rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg modal-panel mx-4">
             <div className="flex items-center justify-between border-b border-[hsl(var(--border))] px-5 py-3">
               <h2 className="text-sm font-semibold text-[hsl(var(--foreground))]">Create Payroll Record</h2>
               <button onClick={() => setShowForm(false)} className="text-[hsl(var(--muted-foreground))]">×</button>

@@ -63,7 +63,7 @@ export default function ReportsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">Reports</h1>
+          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">Reports</h1>
           <p className="text-sm text-[hsl(var(--muted-foreground))] mt-0.5">
             Analytics and insights across the organization
           </p>

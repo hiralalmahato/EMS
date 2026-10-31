@@ -25,7 +25,7 @@ export default function SettingsPage() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">Settings</h1>
+        <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">Settings</h1>
         <p className="text-sm text-[hsl(var(--muted-foreground))] mt-0.5">
           Manage company configuration and preferences
         </p>

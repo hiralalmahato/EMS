@@ -52,18 +52,23 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        'flex h-screen flex-col border-r border-[hsl(var(--border))] bg-[hsl(var(--card))] transition-all duration-200',
-        collapsed ? 'w-16' : 'w-56'
+        'flex h-screen flex-col border-r border-[hsl(var(--border))] bg-[hsl(var(--card))] transition-all duration-250 ease-in-out',
+        collapsed ? 'w-[60px]' : 'w-56'
       )}
     >
       {/* Brand */}
-      <div className="flex h-14 items-center gap-2.5 border-b border-[hsl(var(--border))] px-4">
-        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[hsl(var(--primary))] text-white">
-          <span className="text-xs font-bold">W</span>
+      <div className="flex h-14 items-center gap-2.5 border-b border-[hsl(var(--border))] px-3.5">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--primary))] text-white transition-transform duration-200 hover:scale-105">
+          <span className="text-xs font-bold tracking-tight">W</span>
         </div>
-        {!collapsed && (
-          <span className="text-sm font-semibold text-[hsl(var(--foreground))]">Workly</span>
-        )}
+        <span
+          className={cn(
+            'text-sm font-semibold text-[hsl(var(--foreground))] tracking-tight transition-all duration-200',
+            collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'
+          )}
+        >
+          Workly
+        </span>
       </div>
 
       {/* Navigation */}
@@ -76,16 +81,30 @@ export default function Sidebar() {
                 end={item.href === '/'}
                 className={({ isActive }) =>
                   cn(
-                    'flex items-center gap-2.5 rounded-md px-2.5 py-2 text-[13px] font-medium transition-colors',
+                    'group relative flex items-center gap-2.5 rounded-md px-2.5 py-[7px] text-[13px] font-medium transition-all duration-200',
                     isActive
                       ? 'bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]'
-                      : 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--foreground))]'
+                      : 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--foreground))] hover:translate-x-[1px]'
                   )
                 }
                 title={collapsed ? item.name : undefined}
               >
-                <item.icon className="h-4 w-4 shrink-0" />
-                {!collapsed && item.name}
+                {({ isActive }) => (
+                  <>
+                    {isActive && (
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 rounded-r-full bg-[hsl(var(--primary))]" />
+                    )}
+                    <item.icon className="h-[16px] w-[16px] shrink-0" />
+                    <span
+                      className={cn(
+                        'transition-all duration-200 whitespace-nowrap',
+                        collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'
+                      )}
+                    >
+                      {item.name}
+                    </span>
+                  </>
+                )}
               </NavLink>
             </li>
           ))}
@@ -94,39 +113,46 @@ export default function Sidebar() {
 
       {/* Bottom section */}
       <div className="border-t border-[hsl(var(--border))] p-2">
-        {!collapsed && user && (
-          <div className="mb-2 px-2.5 py-1.5">
-            <p className="text-xs font-medium text-[hsl(var(--foreground))] truncate">
-              {user.first_name} {user.last_name}
-            </p>
-            <p className="text-[11px] text-[hsl(var(--muted-foreground))] capitalize">
-              {user.role?.replace('_', ' ')}
-            </p>
-          </div>
-        )}
+        <div
+          className={cn(
+            'transition-all duration-200 overflow-hidden',
+            collapsed ? 'h-0 opacity-0 mb-0' : 'h-auto opacity-100 mb-1'
+          )}
+        >
+          {user && (
+            <div className="px-2.5 py-1.5">
+              <p className="text-xs font-medium text-[hsl(var(--foreground))] truncate">
+                {user.first_name} {user.last_name}
+              </p>
+              <p className="text-[11px] text-[hsl(var(--muted-foreground))] capitalize">
+                {user.role?.replace('_', ' ')}
+              </p>
+            </div>
+          )}
+        </div>
 
         <button
           onClick={handleLogout}
-          className="flex w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-[13px] font-medium text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--foreground))] transition-colors"
+          className="flex w-full items-center gap-2.5 rounded-md px-2.5 py-[7px] text-[13px] font-medium text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--foreground))] transition-all duration-200"
           title={collapsed ? 'Sign out' : undefined}
         >
           <LogOut className="h-4 w-4 shrink-0" />
-          {!collapsed && 'Sign out'}
+          <span className={cn('transition-all duration-200', collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100')}>
+            Sign out
+          </span>
         </button>
 
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="flex w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-[13px] font-medium text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--foreground))] transition-colors mt-0.5"
+          className="flex w-full items-center gap-2.5 rounded-md px-2.5 py-[7px] text-[13px] font-medium text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--foreground))] transition-all duration-200 mt-0.5"
           title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
-          {collapsed ? (
-            <ChevronRight className="h-4 w-4 shrink-0" />
-          ) : (
-            <>
-              <ChevronLeft className="h-4 w-4 shrink-0" />
-              Collapse
-            </>
-          )}
+          <div className={cn('shrink-0 transition-transform duration-250', collapsed ? 'rotate-0' : 'rotate-180')}>
+            <ChevronRight className="h-4 w-4" />
+          </div>
+          <span className={cn('transition-all duration-200', collapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100')}>
+            Collapse
+          </span>
         </button>
       </div>
     </aside>

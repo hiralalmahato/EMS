@@ -107,12 +107,12 @@ export default function LeavesPage() {
     <div className="space-y-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">Leave Management</h1>
+          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">Leave Management</h1>
           <p className="text-sm text-[hsl(var(--muted-foreground))]">Manage leave requests and balances</p>
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="inline-flex h-8 items-center gap-1.5 rounded-md bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:bg-[hsl(var(--primary))]/90"
+          className="inline-flex h-8 items-center gap-1.5 rounded-md bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:opacity-90 transition-all duration-200 btn-press"
         >
           <Plus className="h-3.5 w-3.5" /> Apply for Leave
         </button>
@@ -217,8 +217,8 @@ export default function LeavesPage() {
 
       {/* Apply Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-full max-w-md rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg mx-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 modal-backdrop">
+          <div className="w-full max-w-md rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg modal-panel mx-4">
             <div className="flex items-center justify-between border-b border-[hsl(var(--border))] px-5 py-3">
               <h2 className="text-sm font-semibold text-[hsl(var(--foreground))]">Apply for Leave</h2>
               <button onClick={() => setShowForm(false)} className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"><X className="h-4 w-4" /></button>
@@ -267,8 +267,8 @@ export default function LeavesPage() {
 
       {/* Reject reason modal */}
       {rejectId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-full max-w-sm rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg mx-4 p-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 modal-backdrop">
+          <div className="w-full max-w-sm rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg modal-panel mx-4 p-5">
             <h3 className="text-sm font-semibold text-[hsl(var(--foreground))] mb-3">Rejection Reason</h3>
             <textarea value={rejectReason} onChange={e => setRejectReason(e.target.value)} rows={3} placeholder="Optional reason..."
               className="w-full rounded-md border border-[hsl(var(--input))] bg-[hsl(var(--background))] px-2.5 py-1.5 text-xs mb-3" />

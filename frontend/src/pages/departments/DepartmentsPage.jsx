@@ -106,14 +106,14 @@ export default function DepartmentsPage() {
       {/* Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">Departments</h1>
+          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">Departments</h1>
           <p className="text-sm text-[hsl(var(--muted-foreground))]">
             {departments.length} department{departments.length !== 1 ? 's' : ''}
           </p>
         </div>
         <button
           onClick={openCreate}
-          className="inline-flex h-8 items-center gap-1.5 rounded-md bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:bg-[hsl(var(--primary))]/90"
+          className="inline-flex h-8 items-center gap-1.5 rounded-md bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:opacity-90 transition-all duration-200 btn-press"
         >
           <Plus className="h-3.5 w-3.5" /> Add Department
         </button>
@@ -223,8 +223,8 @@ export default function DepartmentsPage() {
 
       {/* Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-full max-w-md rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg mx-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 modal-backdrop">
+          <div className="w-full max-w-md rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg modal-panel mx-4">
             <div className="flex items-center justify-between border-b border-[hsl(var(--border))] px-5 py-3">
               <h2 className="text-sm font-semibold text-[hsl(var(--foreground))]">
                 {editDept ? 'Edit Department' : 'Add Department'}
@@ -256,7 +256,7 @@ export default function DepartmentsPage() {
               </div>
               <div className="flex justify-end gap-2 pt-2">
                 <button type="button" onClick={() => setShowForm(false)} className="h-8 rounded-md border border-[hsl(var(--border))] px-4 text-xs font-medium text-[hsl(var(--foreground))] hover:bg-[hsl(var(--accent))]">Cancel</button>
-                <button type="submit" disabled={saving} className="h-8 rounded-md bg-[hsl(var(--primary))] px-4 text-xs font-medium text-white hover:bg-[hsl(var(--primary))]/90 disabled:opacity-50">
+                <button type="submit" disabled={saving} className="h-8 rounded-md bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:opacity-90 transition-all duration-200 btn-press disabled:opacity-50">
                   {saving ? 'Saving...' : editDept ? 'Update' : 'Create'}
                 </button>
               </div>

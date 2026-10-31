@@ -93,7 +93,7 @@ export default function AnnouncementsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">Announcements</h1>
+          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">Announcements</h1>
           <p className="text-sm text-[hsl(var(--muted-foreground))] mt-0.5">
             Company-wide updates and notices
           </p>
@@ -111,8 +111,8 @@ export default function AnnouncementsPage() {
 
       {/* Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-full max-w-lg rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 modal-backdrop">
+          <div className="w-full max-w-lg rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg modal-panel">
             <div className="flex items-center justify-between border-b border-[hsl(var(--border))] px-5 py-3.5">
               <h2 className="text-sm font-semibold text-[hsl(var(--foreground))]">
                 {editingId ? 'Edit Announcement' : 'New Announcement'}
@@ -173,8 +173,8 @@ export default function AnnouncementsPage() {
 
       {/* Detail Modal */}
       {viewingAnnouncement && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-full max-w-lg rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 modal-backdrop">
+          <div className="w-full max-w-lg rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg modal-panel">
             <div className="flex items-center justify-between border-b border-[hsl(var(--border))] px-5 py-3.5">
               <h2 className="text-sm font-semibold text-[hsl(var(--foreground))]">{viewingAnnouncement.title}</h2>
               <button onClick={() => setViewingAnnouncement(null)} className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">

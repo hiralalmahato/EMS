@@ -94,7 +94,7 @@ export default function EmployeeProfilePage() {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">{e.full_name}</h1>
+              <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">{e.full_name}</h1>
               <span className={cn(
                 'inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium capitalize',
                 STATUS_STYLES[e.status]

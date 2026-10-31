@@ -147,9 +147,9 @@ export default function EmployeesPage() {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between animate-fade-in">
         <div>
-          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">Employees</h1>
+          <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">Employees</h1>
           <p className="text-sm text-[hsl(var(--muted-foreground))]">
             {totalCount} employee{totalCount !== 1 ? 's' : ''} total
           </p>
@@ -165,7 +165,7 @@ export default function EmployeesPage() {
               </button>
               <button
                 onClick={() => { setEditingEmployee(null); setShowForm(true); }}
-                className="inline-flex h-8 items-center gap-1.5 rounded-md bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:bg-[hsl(var(--primary))]/90"
+                className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-[hsl(var(--primary))] px-3 text-xs font-medium text-white hover:opacity-90 transition-all duration-200 btn-press"
               >
                 <Plus className="h-3.5 w-3.5" /> Add Employee
               </button>
@@ -243,7 +243,7 @@ export default function EmployeesPage() {
       )}
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))]">
+      <div className="overflow-x-auto rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] animate-slide-up delay-1">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-[hsl(var(--border))] bg-[hsl(var(--secondary))]/50">
@@ -273,7 +273,7 @@ export default function EmployeesPage() {
               </tr>
             ) : (
               employees.map((emp) => (
-                <tr key={emp.id} className="hover:bg-[hsl(var(--accent))]/50 transition-colors">
+                <tr key={emp.id} className="table-row-hover">
                   <td className="px-4 py-2.5">
                     <Link to={`/employees/${emp.id}`} className="flex items-center gap-2.5">
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
@@ -311,7 +311,7 @@ export default function EmployeesPage() {
                         {actionMenuId === emp.id && (
                           <>
                             <div className="fixed inset-0 z-40" onClick={() => setActionMenuId(null)} />
-                            <div className="absolute right-0 top-full z-50 mt-1 w-36 rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--card))] py-1 shadow-lg">
+                            <div className="dropdown-menu absolute right-0 top-full z-50 mt-1 w-36 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] py-1 shadow-lg">
                               <Link
                                 to={`/employees/${emp.id}`}
                                 className="flex items-center gap-2 px-3 py-1.5 text-xs text-[hsl(var(--foreground))] hover:bg-[hsl(var(--accent))]"

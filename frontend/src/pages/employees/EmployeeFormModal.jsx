@@ -120,8 +120,8 @@ export default function EmployeeFormModal({ employee, departments, onClose, onSa
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 pt-10 overflow-y-auto">
-      <div className="w-full max-w-lg rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg mx-4 mb-10">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 pt-10 overflow-y-auto modal-backdrop">
+      <div className="w-full max-w-lg rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] shadow-lg mx-4 mb-10 modal-panel">
         <div className="flex items-center justify-between border-b border-[hsl(var(--border))] px-5 py-3">
           <h2 className="text-sm font-semibold text-[hsl(var(--foreground))]">
             {isEdit ? 'Edit Employee' : 'Add Employee'}

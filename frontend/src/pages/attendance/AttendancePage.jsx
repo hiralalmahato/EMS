@@ -85,7 +85,7 @@ export default function AttendancePage() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-lg font-semibold text-[hsl(var(--foreground))]">Attendance</h1>
+        <h1 className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">Attendance</h1>
         <p className="text-sm text-[hsl(var(--muted-foreground))]">
           {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </p>
@@ -99,21 +99,21 @@ export default function AttendancePage() {
             <div className="flex-1 rounded-md border border-[hsl(var(--border))] p-4 text-center">
               <LogIn className="h-5 w-5 mx-auto mb-1.5 text-[hsl(var(--primary))]" />
               <p className="text-xs text-[hsl(var(--muted-foreground))] mb-0.5">Check In</p>
-              <p className="text-lg font-semibold text-[hsl(var(--foreground))]">
+              <p className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">
                 {hasCheckedIn ? new Date(todayRecord.check_in).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '—'}
               </p>
             </div>
             <div className="flex-1 rounded-md border border-[hsl(var(--border))] p-4 text-center">
               <LogOut className="h-5 w-5 mx-auto mb-1.5 text-[hsl(var(--muted-foreground))]" />
               <p className="text-xs text-[hsl(var(--muted-foreground))] mb-0.5">Check Out</p>
-              <p className="text-lg font-semibold text-[hsl(var(--foreground))]">
+              <p className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">
                 {hasCheckedOut ? new Date(todayRecord.check_out).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '—'}
               </p>
             </div>
             <div className="flex-1 rounded-md border border-[hsl(var(--border))] p-4 text-center">
               <Clock className="h-5 w-5 mx-auto mb-1.5 text-emerald-600" />
               <p className="text-xs text-[hsl(var(--muted-foreground))] mb-0.5">Working Hours</p>
-              <p className="text-lg font-semibold text-[hsl(var(--foreground))]">
+              <p className="text-lg font-semibold text-[hsl(var(--foreground))] tracking-tight">
                 {todayRecord?.working_hours ? `${todayRecord.working_hours}h` : '—'}
               </p>
             </div>
