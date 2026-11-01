@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
-import { Clock, LogIn, LogOut, Calendar, Download } from 'lucide-react';
+import { Clock, LogIn, LogOut } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import toast from 'react-hot-toast';
 
@@ -26,11 +26,7 @@ export default function AttendancePage() {
 
   const isAdmin = user?.role === 'admin' || user?.role === 'hr_manager';
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const [todayRes, recordsRes] = await Promise.all([
@@ -44,12 +40,16 @@ export default function AttendancePage() {
         const summaryRes = await api.get('/attendance/summary/');
         setSummary(summaryRes.data);
       }
-    } catch (err) {
+    } catch {
       // Handle silently
     } finally {
       setLoading(false);
     }
-  };
+  }, [isAdmin]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleCheckIn = async () => {
     setCheckingIn(true);
